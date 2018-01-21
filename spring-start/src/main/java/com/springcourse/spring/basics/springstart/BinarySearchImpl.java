@@ -1,10 +1,14 @@
 package com.springcourse.spring.basics.springstart;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class BinarySearchImpl {
 	// binary search expects a sorted array 
 	// then search the array
 	// then return the result 
-	
+	@Autowired
 	private SortAlgorithm sortAlgorithm;
 	
 	
@@ -12,9 +16,7 @@ public class BinarySearchImpl {
 	public BinarySearchImpl(SortAlgorithm sortAlgorithm) {
 		this.sortAlgorithm = sortAlgorithm;
 	}
-
-
-
+ 
 	public int binarySearch(int[] numbers, int numberToSearchFor) {
 		// since this bubble sort algo is moved outside of BinarySearchImpl if there 
 		// is a change to bubble sort we dont have to change BinarySearchImpl
