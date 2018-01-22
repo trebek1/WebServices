@@ -12,10 +12,17 @@ public class BinarySearchImpl {
 	private SortAlgorithm sortAlgorithm;
 	
 	
+	// Removing constructor for setter injection example 
 	
-	public BinarySearchImpl(SortAlgorithm sortAlgorithm) {
-		this.sortAlgorithm = sortAlgorithm;
-	}
+	//	public BinarySearchImpl(SortAlgorithm sortAlgorithm) {
+	//		this.sortAlgorithm = sortAlgorithm;
+	//	}
+	
+	
+	//	public void setSortAlgorithm(SortAlgorithm sortAlgorithm) {
+	//		this.sortAlgorithm = sortAlgorithm;
+	//	}
+	
  
 	public int binarySearch(int[] numbers, int numberToSearchFor) {
 		// since this bubble sort algo is moved outside of BinarySearchImpl if there 
