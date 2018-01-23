@@ -1,4 +1,4 @@
-package com.course.soap.webservices.soap1.soap;
+package soap;
 
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -26,7 +26,7 @@ public class CourseDetailsEndpoint {
 		CourseDetails courseDetails = new CourseDetails();
 		courseDetails.setId(request.getId());
 		courseDetails.setName("Microservices Course");
-		courseDetails.setDescription("That wonderful course");
+		courseDetails.setDescription("Finally Learning This Stuff Course");
 		response.setCourseDetails(courseDetails);
 		
 		return response;
