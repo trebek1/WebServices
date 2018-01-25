@@ -16,7 +16,9 @@ import com.course.myschema.GetAllCourseDetailsResponse;
 import com.course.myschema.GetCourseDetailsRequest;
 import com.course.myschema.GetCourseDetailsResponse;
 import com.course.soap.webservices.soap1.soap.bean.Course;
+import com.course.soap.webservices.soap1.soap.exception.CourseNotFoundException;
 import com.course.soap.webservices.soap1.soap.service.CourseDetailsService;
+import com.course.soap.webservices.soap1.soap.service.CourseDetailsService.Status;
 
 @Endpoint
 public class CourseDetailsEndpoint {
@@ -34,16 +36,28 @@ public class CourseDetailsEndpoint {
 	@ResponsePayload
 	public GetCourseDetailsResponse processCourseDetailsRequest(@RequestPayload GetCourseDetailsRequest request) {
 		Course course = service.findById(request.getId());
+		if(course == null) {
+			// throw new RuntimeException("Invalid course id " + request.getId());
+			throw new CourseNotFoundException("Invalid course id " + request.getId());
+		}
 		return mapCourseDetails(course);
 	}
 	
 	@PayloadRoot(namespace = "http://alex.com/courses", localPart = "DeleteCourseDetailsRequest")
 	@ResponsePayload
 	public DeleteCourseDetailsResponse deleteCourseDetailsRequest(@RequestPayload DeleteCourseDetailsRequest request) {
-			int status = service.deleteById(request.getId());
+			Status status = service.deleteById(request.getId());
 			DeleteCourseDetailsResponse response = new DeleteCourseDetailsResponse();
-			response.setStatus(status);
+			response.setStatus(mapStatus(status));
 		return response;
+	}
+
+	private com.course.myschema.Status mapStatus(Status status) {
+		// TODO Auto-generated method stub
+		if(status == Status.FAILURE) {
+			return com.course.myschema.Status.FAILURE;
+		}
+		return com.course.myschema.Status.SUCCESS;
 	}
 
 	private GetCourseDetailsResponse mapCourseDetails(Course course) {

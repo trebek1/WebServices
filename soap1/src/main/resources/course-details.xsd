@@ -23,10 +23,18 @@ elementFormDefault="qualified">
 	<xs:complexType>
 		<xs:sequence>
 			<!-- 1 for success 0 for failure -->
-			<xs:element name="status" type="xs:int"/> 
+			<!-- tns is short for target name space - where we are now -->
+			<xs:element name="status" type="tns:Status"/> 
 		</xs:sequence>
 	</xs:complexType>
   </xs:element>
+  
+  <xs:simpleType name="Status">
+  	<xs:restriction base="xs:string">
+  		<xs:enumeration value="SUCCESS"></xs:enumeration>
+  		<xs:enumeration value="FAILURE"	></xs:enumeration>
+  	</xs:restriction>
+  </xs:simpleType>
 
 
 <xs:element name="GetCourseDetailsResponse">

@@ -14,6 +14,9 @@ public class CourseDetailsService {
 	// get all 
 	// delete one 
 	
+	
+	public enum Status { SUCCESS, FAILURE };
+	
 	private static List<Course> courses = new ArrayList<>();
 	static {
 		Course course1 = new Course(1, "spring", "10 steps");
@@ -40,15 +43,15 @@ public class CourseDetailsService {
 		return courses;
 	}
 	
-	public int deleteById(int id) {
+	public Status deleteById(int id) {
 		Iterator<Course> it = courses.iterator();
 		while(it.hasNext()) {
 			Course course = it.next();
 			if(course.getId() == id) {
 				it.remove();
-				return 1;
+				return Status.SUCCESS;
 			}
 		}
-		return 0;
+		return Status.FAILURE;
 	}
 }
