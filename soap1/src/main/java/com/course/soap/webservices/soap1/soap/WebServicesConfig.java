@@ -1,4 +1,4 @@
-package soap;
+package com.course.soap.webservices.soap1.soap;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -29,7 +29,6 @@ public class WebServicesConfig {
 		messageDispatcherServlet.setTransformWsdlLocations(true);
 		return new ServletRegistrationBean(messageDispatcherServlet, "/ws/*");
 	}
-
 	// contract based -- just include everything needed in the contract  
 	
 	// courses.wsdl
@@ -58,3 +57,4 @@ public class WebServicesConfig {
 	// 
 	
 }
+
